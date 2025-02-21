@@ -290,16 +290,68 @@ python app.py
    - `async/await` 可以让代码等待请求完成后再继续执行后续操作。
 
    - 示例：
+ ```js
+ async function calculate() {
+     const response = await fetch('/calculate');
+     const result = await response.text(); 
+     // 处理结果 
+ }
+ ```
 
-     ```
-     async function calculate() {
-         const response = await fetch('/calculate');
-         const result = await response.text(); 
-         // 处理结果 
-     }
-     ```
 
 
+
+## 6. 知识点
+
+1. CSS类选择器与标签选择器
+
+   - `.buttons`：这是一个 CSS 类选择器，表示对所有带有 `class="buttons"` 的 HTML 元素应用以下样式。
+
+```css
+.buttons {
+    display: grid;           /*网格布局*/
+    grid-template-columns: repeat(4, 1fr);  /*总共有 4 列，每列宽度相同*/
+    gap: 5px;               /*设置网格项之间的间距（间隙）为 5 像素*/
+}
+```
+
+   - `button` 这是一个标签选择器，表示对所有 `<button>` 元素应用以下样式。
+
+```
+button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    color: #333;
+}
+```
+
+
+
+2. CSS鼠标悬停 hover
+
+```
+.operator与.operator:hover
+button与button:hover
+```
+
+- 触发条件与用途
+
+  - `.operator`：无需任何交互，默认应用。设置元素的默认样式。
+  - `.operator:hover`：仅在鼠标悬停时应用。设计交互效果，增强用户体验。
+
+  
+
+3. 可以使用`async`来显示计算结果，避免刷新页面
+4. 使用form进行表单提交时，不一定非要有一个submit标签，这个计算器就没有.
+5. 使用form进行表单提交时，要像下面这样，有name与value
+
+```
+<input type="text" id="display" name="expression" readonly value="{{ result }}">
+```
 
 
 
