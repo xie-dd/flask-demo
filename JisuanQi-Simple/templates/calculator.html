@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>简单计算器</h2>
+        <form method="post">
+            <input type="number" name="num1" placeholder="请输入第一个数字" value="{{ num1 }}" required><br>
+            <input type="number" name="num2" placeholder="请输入第二个数字" value="{{ num2 }}" required><br>
+            <select name="operation">
+                <option value="+"{% if operation == '+' %} selected{% endif %}>加法 (+)</option>
+                <option value="-"{% if operation == '-' %} selected{% endif %}>减法 (-)</option>
+                <option value="*"{% if operation == '*' %} selected{% endif %}>乘法 (*)</option>
+                <option value="/"{% if operation == '/' %} selected{% endif %}>除法 (/)</option>
+            </select><br>
+            <button type="submit" name="submit" value="calculate">等于 (=)</button>
+        </form>
+        <div id="result">
+            {{ result }}
+        </div>
+    </div>
+</body>
+</html>

@@ -355,5 +355,117 @@ button与button:hover
 
 
 
-# 项目 2
+# 项目 2：简易计算器
+
+![image-20250221194251742](https://mypic2016.oss-cn-beijing.aliyuncs.com/picGo/202502211942988.png)
+
+
+
+## 主要代码
+
+### HTML文件
+
+```
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Calculator</title>
+    <style>
+      ...
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>简单计算器</h2>
+        <form method="post">
+            <input type="number" name="num1" placeholder="请输入第一个数字" value="{{ num1 }}" required><br>
+            <input type="number" name="num2" placeholder="请输入第二个数字" value="{{ num2 }}" required><br>
+            <select name="operation">
+                <option value="+"{% if operation == '+' %} selected{% endif %}>加法 (+)</option>
+                <option value="-"{% if operation == '-' %} selected{% endif %}>减法 (-)</option>
+                <option value="*"{% if operation == '*' %} selected{% endif %}>乘法 (*)</option>
+                <option value="/"{% if operation == '/' %} selected{% endif %}>除法 (/)</option>
+            </select><br>
+            <button type="submit" name="submit" value="calculate">等于 (=)</button>
+        </form>
+        <div id="result">
+            {{ result }}
+        </div>
+    </div>
+</body>
+</html>
+```
+
+
+
+### main.py文件
+
+```
+from flask import Flask, render_template, request 
+
+app = Flask(__name__)
+
+@app.route('/',  methods=['GET', 'POST'])
+def calculator():
+    num1 = ""
+    num2 = ""
+    operation = "+"
+    result = ""
+
+    if request.method  == 'POST':
+        if 'num1' in request.form  and 'num2' in request.form  and 'operation' in request.form: 
+            num1 = request.form['num1'] 
+            num2 = request.form['num2'] 
+            operation = request.form['operation'] 
+
+            try:
+                num1_float = float(num1)
+                num2_float = float(num2)
+
+                if operation == '+':
+                    result = num1_float + num2_float 
+                elif operation == '-':
+                    result = num1_float - num2_float 
+                elif operation == '*':
+                    result = num1_float * num2_float 
+                elif operation == '/':
+                    if num2_float != 0:
+                        result = num1_float / num2_float 
+                    else:
+                        result = "除数不能为零！"
+                else:
+                    result = "无效的操作符！"
+            except ValueError:
+                result = "请输入有效的数字！"
+
+    return render_template('calculator.html',  
+                         num1=num1, 
+                         num2=num2, 
+                         operation=operation,
+                         result=result)
+
+if __name__ == '__main__':
+    app.run(debug=True) 
+```
+
+
+
+
+
+
+
+
+
+## 知识点
+
+1. 不使用异步提交async的方式，直接在后端保存表单数据并在重新渲染页面时回填。
+2. 数据如何在前后端传递
+3. 启动flask方式有两种
+   - `flask run`这种情况适合虚拟环境中只有一个app.py文件的项目，像我现在学习flask，可能一个虚拟环境有多个项目，就不能使用这种方式，否则，每次都是启动的第一个app.py项目。这也要求所有项目的入口文件都不能是 app.py
+   - `python main`这是所有python项目都可以使用的，我们现在多案例情况就使用这种方式来启动我们指定的某一个案例
+
+
+
+# 项目3
 
