@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+ 
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 340px;
+        }
+ 
+        #display {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 10px;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+ 
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+ 
+        button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+ 
+        button:hover {
+            background-color: #e6e6e6;
+        }
+ 
+        .operator {
+            background-color: #4a7ebc;
+            color: white;
+            grid-column: 4;  /* 将运算符固定在第四列 */
+        }
+ 
+        .operator:hover {
+            background-color: #3569af;
+        }
+ 
+        .equals {
+            background-color: #27ae60;
+            color: white;
+        }
+ 
+        .equals:hover {
+            background-color: #219a52;
+        }
+ 
+        .clear {
+            background-color: #e74c3c;
+            color: white;
+        }
+ 
+        .clear:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <form id="calculatorForm">
+            <input type="text" id="display" name="expression" readonly value="{{ result }}">
+            <div class="buttons">
+                <button type="button" class="clear" onclick="clearDisplay()">C</button>
+                <button type="button" onclick="deleteLastChar()">←</button>
+                <button type="button" onclick="appendToDisplay('(')">(</button>
+                <button type="button" onclick="appendToDisplay(')')">)</button>
+                
+                <!-- 第一行 -->
+                <button type="button" onclick="appendToDisplay('7')">7</button>
+                <button type="button" onclick="appendToDisplay('8')">8</button>
+                <button type="button" onclick="appendToDisplay('9')">9</button>
+                <button type="button" class="operator" onclick="appendToDisplay('/')">/</button>
+ 
+                <!-- 第二行 -->
+                <button type="button" onclick="appendToDisplay('4')">4</button>
+                <button type="button" onclick="appendToDisplay('5')">5</button>
+                <button type="button" onclick="appendToDisplay('6')">6</button>
+                <button type="button" class="operator" onclick="appendToDisplay('*')">×</button>
+                
+ 
+                <!-- 第三行 -->
+                <button type="button" onclick="appendToDisplay('1')">1</button>
+                <button type="button" onclick="appendToDisplay('2')">2</button>
+                <button type="button" onclick="appendToDisplay('3')">3</button>
+                <button type="button" class="operator" onclick="appendToDisplay('-')">-</button>
+                
+ 
+                <!-- 第四行 -->
+                <button type="button" onclick="appendToDisplay('0')">0</button>
+                <button type="button" onclick="appendToDisplay('00')">00</button>
+                <button type="button" class="equals" onclick="calculate()">=</button>
+                <button type="button" class="operator" onclick="appendToDisplay('+')">+</button>
+                
+            </div>
+        </form>
+    </div>
+ 
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value  += value;
+        }
+ 
+        function clearDisplay() {
+            document.getElementById('display').value  = '';
+        }
+ 
+        function deleteLastChar() {
+            const display = document.getElementById('display'); 
+            display.value  = display.value.slice(0,  -1);
+        }
+ 
+        async function calculate() {
+            const expression = document.getElementById('display').value; 
+            try {
+                const response = await fetch('/calculate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `expression=${encodeURIComponent(expression)}`
+                });
+                const result = await response.text(); 
+                document.getElementById('display').value  = result;
+            } catch (error) {
+                console.error(' 计算错误:', error);
+                document.getElementById('display').value  = '错误';
+            }
+        }
+    </script>
+</body>
+</html>
