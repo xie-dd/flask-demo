@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+
+<body onload="calculateFutureDate()">
+    <h2 id="Heading1">待办事项</h2>
+
+    <table class="table table-dark">
+        <tbody>
+            <tr>
+                <td class="cell0">
+                    <p style="font-family:Arial;line-height:16px;"><span style="font-family:微软雅黑;">启用</span></p>
+                </td>
+                <td class="cell1">
+                    <p>&nbsp;<span style="font-family:微软雅黑;">提醒文本</span></p>
+                </td>
+                <td class="cell2">
+                    <p style="font-family:Arial;"><span style="font-family:Calibri;">Email</span></p>
+                </td>
+                <td class="cell3">
+                    <p style="font-family:Arial;line-height:16px;"><span style="font-family:微软雅黑;">提醒时间</span></p>
+                </td>
+            </tr>
+
+<!-- A1 -->
+            <tr>
+                <td class="cell4">
+                    <div class="form-check" id="A1">
+                        <input class="form-check-input" type="radio" name="A1" id="A1_once" value="A1_Once" 
+                               {% if data.A1 == 'A1_Once' %} checked {% endif %}>
+                        <label class="form-check-label" for="A1_once">一次</label>
+                    </div>
+                    <div class="form-check" id="A1">
+                        <input class="form-check-input" type="radio" name="A1" id="A1_yearly" value="A1_Year" 
+                               {% if data.A1 == 'A1_Year' %} checked {% endif %}>
+                        <label class="form-check-label" for="A1_yearly">每年</label>
+                    </div>
+                    <div class="form-check" id="A1">
+                        <input class="form-check-input" type="radio" name="A1" value="A1_Pause" 
+                               {% if data.A1 == 'A1_Pause' %} checked {% endif %}>
+                        <label class="form-check-label" for="A1_Pause">暂停</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating" >
+                        <textarea class="form-control" id="reminderText_A1">{{ data.reminderText_A1 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="email_A1"       >{{ data.email_A1 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderTime_A1">{{ data.reminderTime_A1 }}</textarea>
+                    </div>
+                </td>
+            </tr>
+
+<!-- A2 -->
+            <tr>
+                <td class="cell4">
+                    <div class="form-check" id="A2">
+                        <input class="form-check-input" type="radio" name="A2" id="A2_once" value="A2_Once" 
+                               {% if data.A2 == 'A2_Once' %} checked {% endif %}>
+                        <label class="form-check-label" for="A2_once">一次</label>
+                    </div>
+                    <div class="form-check" id="A2">
+                        <input class="form-check-input" type="radio" name="A2" id="A2_yearly" value="A2_Year" 
+                               {% if data.A2 == 'A2_Year' %} checked {% endif %}>
+                        <label class="form-check-label" for="A2_yearly">每年</label>
+                    </div>
+                    <div class="form-check" id="A2">
+                        <input class="form-check-input" type="radio" name="A2" value="A2_Pause" 
+                               {% if data.A2 == 'A2_Pause' %} checked {% endif %}>
+                        <label class="form-check-label" for="A2_Pause">暂停</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderText_A2">{{ data.reminderText_A2 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="email_A2">{{ data.email_A2 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderTime_A2">{{ data.reminderTime_A2 }}</textarea>
+                    </div>
+                </td>
+            </tr>
+<!-- A3 -->
+            <tr>
+                <td class="cell4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A3" id="A3_once" value="A3_Once" 
+                               {% if data.A3 == 'A3_Once' %} checked {% endif %}>
+                        <label class="form-check-label" for="A3_once">一次</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A3" id="A3_yearly" value="A3_Year" 
+                               {% if data.A3 == 'A3_Year' %} checked {% endif %}>
+                        <label class="form-check-label" for="A3_yearly">每年</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A3" value="A3_Pause" 
+                               {% if data.A3 == 'A3_Pause' %} checked {% endif %}>
+                        <label class="form-check-label" for="A3_Pause">暂停</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderText_A3">{{ data.reminderText_A3 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="email_A3">{{ data.email_A3 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderTime_A3">{{ data.reminderTime_A3 }}</textarea>
+                    </div>
+                </td>
+            </tr>
+<!-- A4 -->
+            <tr>
+                <td class="cell4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A4" id="A4_once" value="A4_Once" 
+                               {% if data.A4 == 'A4_Once' %} checked {% endif %}>
+                        <label class="form-check-label" for="A4_once">一次</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A4" id="A4_yearly" value="A4_Year" 
+                               {% if data.A4 == 'A4_Year' %} checked {% endif %}>
+                        <label class="form-check-label" for="A4_yearly">每年</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A4" value="A4_Pause" 
+                               {% if data.A4 == 'A4_Pause' %} checked {% endif %}>
+                        <label class="form-check-label" for="A4_Pause">暂停</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderText_A4">{{ data.reminderText_A4 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="email_A4">{{ data.email_A4 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderTime_A4">{{ data.reminderTime_A4 }}</textarea>
+                    </div>
+                </td>
+            </tr>
+<!-- A5 -->
+            <tr>
+                <td class="cell4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A5" id="A5_once" value="A5_Once" 
+                               {% if data.A5 == 'A5_Once' %} checked {% endif %}>
+                        <label class="form-check-label" for="A5_once">一次</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A5" id="A5_yearly" value="A5_Year" 
+                               {% if data.A5 == 'A5_Year' %} checked {% endif %}>
+                        <label class="form-check-label" for="A5_yearly">每年</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="A5" id="A5_Pause" value="A5_Pause" 
+                               {% if data.A5 == 'A5_Pause' %} checked {% endif %}>
+                        <label class="form-check-label" for="A5_Pause">暂停</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderText_A5">{{ data.reminderText_A5 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="email_A5">{{ data.email_A5 }}</textarea>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="reminderTime_A5">{{ data.reminderTime_A5 }}</textarea>
+                    </div>
+                </td>
+            </tr>
+  
+            <!-- Repeat for other rows, using the same logic to fill in the data -->
+        </tbody>
+    </table>
+
+    <h2>小工具</h2>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">28天后时间为</span>
+        <input type="text" class="form-control" id="calu_date" readonly>
+    </div>
+
+    
+    <!-- Save buttons -->
+    <button id="saveButton" class="btn btn-primary btn-lg" onclick="saveData()">保存</button>
+
+    <!-- 显示时间戳 -->
+    <div id="timestamp" class="mt-3">
+        当前时间：<span id="currentTime"></span>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="shA356-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        function calculateFutureDate() {
+            const currentDate = new Date();
+            const futureDate = new Date(currentDate.getTime() + 28 * 24 * 60 * 60 * 1000);
+            const year = futureDate.getFullYear();
+            const month = String(futureDate.getMonth() + 1).padStart(2, '0');
+            const day = String(futureDate.getDate()).padStart(2, '0');
+            const formattedDate = `${year}-${month}-${day}`;
+            document.getElementById('calu_date').value = formattedDate;
+        }
+
+        // 保存数据
+        function saveData() {
+		    const data = {
+		        reminderText_A1: document.getElementById('reminderText_A1').value,
+		        email_A1: document.getElementById('email_A1').value,
+		        reminderTime_A1: document.getElementById('reminderTime_A1').value,
+		        A1: getRadioValue('A1'),
+		        
+		        reminderText_A2: document.getElementById('reminderText_A2').value,
+		        email_A2: document.getElementById('email_A2').value,
+		        reminderTime_A2: document.getElementById('reminderTime_A2').value,
+		        A2: getRadioValue('A2'),
+		        
+		        reminderText_A3: document.getElementById('reminderText_A3').value,
+		        email_A3: document.getElementById('email_A3').value,
+		        reminderTime_A3: document.getElementById('reminderTime_A3').value,
+		        A3: getRadioValue('A3'),
+		        
+		        reminderText_A4: document.getElementById('reminderText_A4').value,
+		        email_A4: document.getElementById('email_A4').value,
+		        reminderTime_A4: document.getElementById('reminderTime_A4').value,
+		        A4: getRadioValue('A4'),
+		        
+		        reminderText_A5: document.getElementById('reminderText_A5').value,
+		        email_A5: document.getElementById('email_A5').value,
+		        reminderTime_A5: document.getElementById('reminderTime_A5').value,
+		        A5: getRadioValue('A5')
+		    };
+		    $.ajax({
+		        url: '/save_data',
+		        type: 'POST',
+		        contentType: 'application/json',
+		        data: JSON.stringify(data),
+		        success: function(response) {
+		            alert('数据已保存！');
+		        }
+		    });
+		}
+
+
+
+        function getRadioValue(name) {
+            const radios = document.getElementsByName(name);
+            for (let radio of radios) {
+                if (radio.checked) {
+                    return radio.value;
+                }
+            }
+            return null;  // Default if nothing is selected
+        }
+
+
+        // 更新当前时间戳
+        setInterval(function() {
+            const now = new Date();
+            document.getElementById('currentTime').textContent = now.toLocaleString();
+        }, 1000);
+
+
+        // 禁用 Ctrl + S
+        window.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault(); // 阻止默认的保存行为
+                alert('Ctrl + S 被禁用');
+            }
+        });
+    </script>
+</body>
+
+</html>

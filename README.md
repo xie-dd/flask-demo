@@ -467,5 +467,13 @@ if __name__ == '__main__':
 
 
 
-# 项目3
+# 项目3 ToDo
+
+![](https://mypic2016.oss-cn-beijing.aliyuncs.com/picGo/202502242219035.png)
+
+
+
+只需要在1panel中或者本地写个脚本获取mysql数据并进行检测发邮件即可
+
+
 
